@@ -1,38 +1,36 @@
 spring:
-  profiles:
-    group:
-      "local":"common","local_env"
----
-spring:
-  profiles:
-    group:
-      "dev":"common","local_dev"
----
-spring:
-  profiles:
-    group:
-      "prod":"common","local_prod"
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/template
+    username: template
+    password: template
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 ---
 spring:
   config:
     activate:
-      on-profile: "common"
----
-spring:
-  config:
-    activate:
-      on-profile: "local_env"
----
-spring:
-  config:
-    activate:
-      on-profile: "dev_env"
+      on-profile: dev
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/template
+    username: template
+    password: template
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 server:
   port: 80
 ---
 spring:
   config:
     activate:
-      on-profile: "prod_env"
+      on-profile: prod
 server:
   port: 80
